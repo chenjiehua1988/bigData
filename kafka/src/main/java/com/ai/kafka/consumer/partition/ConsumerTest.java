@@ -1,4 +1,4 @@
-package com.ai.kafka.partition;
+package com.ai.kafka.consumer.partition;
 
 import kafka.api.FetchRequest;
 import kafka.api.FetchRequestBuilder;
@@ -19,7 +19,7 @@ import java.util.*;
  * Author: cjh
  * Date: 2017/1/13
  * Time: 10:01
- * Description：该类的作用
+ * Description：分区消费模型
  * To change this template use File | Settings | File Templates.
  */
 public class ConsumerTest {
@@ -76,7 +76,7 @@ public class ConsumerTest {
         String clientName = "Client_" + a_topic + "_" + a_partition;
 
         SimpleConsumer consumer = new SimpleConsumer(leadBroker, a_port, 100000, 64 * 1024, clientName);
-        long readOffset = getLastOffset(consumer,a_topic, a_partition, kafka.api.OffsetRequest.LatestTime(), clientName);
+        long readOffset = getLastOffset(consumer,a_topic, a_partition, kafka.api.OffsetRequest.EarliestTime(), clientName);
         log.info("readOffset= "+ readOffset) ;
 
         int numErrors = 0;

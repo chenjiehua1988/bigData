@@ -1,12 +1,10 @@
-package com.ai.kafka.group;
+package com.ai.kafka.consumer.group;
 
-import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
 import org.apache.log4j.Logger;
-import scala.util.parsing.combinator.testing.Str;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * Author: cjh
  * Date: 2017/1/12
  * Time: 15:39
- * Description：该类的作用
+ * Description：组消费模型
  * To change this template use File | Settings | File Templates.
  */
 public class ConsumerTest extends Thread{
@@ -65,7 +63,7 @@ public class ConsumerTest extends Thread{
 
         props.put("zookeeper.connect", a_zookeeper);
         props.put("group.id", a_groupId);
-        props.put("zookeeper.session.timeout.ms", "40000");
+        props.put("zookeeper.session.timeout.ms", "4000");
         props.put("zookeeper.sync.time.ms", "2000");
         props.put("auto.commit.interval.ms", "1000");
         props.put("rebalance.backoff.ms", "2000");
@@ -95,7 +93,7 @@ public class ConsumerTest extends Thread{
 
         String zookeeper= "192.168.31.128:2181,192.168.31.130:2181,192.168.31.131:2181";
         String groupId= "group1";
-        String topic= "topic1";
+        String topic= "topic2";
 
         int threads= 1;
 
@@ -103,7 +101,7 @@ public class ConsumerTest extends Thread{
         consumerTest.run(threads);
 
         try {
-            Thread.sleep(1000* 60* 3);
+            Thread.sleep(1000* 60* 30);
         } catch (InterruptedException e) {
 
             log.error(e);
@@ -127,7 +125,7 @@ public class ConsumerTest extends Thread{
                 System.out.println("Thread " + m_threadNumber + ": " + new String(it.next().message()));
 
             }
-            System.out.println("Shutting down Thread: " + m_threadNumber);
+            log.info("Shutting down Thread: " + m_threadNumber);
         }
     }
 }
