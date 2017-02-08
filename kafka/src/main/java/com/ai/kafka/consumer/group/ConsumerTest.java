@@ -64,7 +64,7 @@ public class ConsumerTest extends Thread{
         props.put("zookeeper.connect", a_zookeeper);
         props.put("group.id", a_groupId);
         props.put("zookeeper.session.timeout.ms", "4000");
-        props.put("zookeeper.sync.time.ms", "2000");
+        props.put("zookeeper.async.time.ms", "2000");
         props.put("auto.commit.interval.ms", "1000");
         props.put("rebalance.backoff.ms", "2000");
         props.put("rebalance.max.retries", "10");
@@ -93,9 +93,9 @@ public class ConsumerTest extends Thread{
 
         String zookeeper= "192.168.31.128:2181,192.168.31.130:2181,192.168.31.131:2181";
         String groupId= "group1";
-        String topic= "topic2";
+        String topic= "topic5";
 
-        int threads= 1;
+        int threads= 2;
 
         ConsumerTest consumerTest= new ConsumerTest(zookeeper, groupId, topic);
         consumerTest.run(threads);

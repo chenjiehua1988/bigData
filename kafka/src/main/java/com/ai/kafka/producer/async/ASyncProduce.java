@@ -1,4 +1,4 @@
-package com.ai.kafka.producer.sync;
+package com.ai.kafka.producer.async;
 
 import java.util.*;
 
@@ -19,9 +19,9 @@ public class ASyncProduce {
         props.put("partitioner.class", "com.ai.kafka.producer.partition.SimplePartitioner");
 		//kafka.producer.DefaultPartitioner: based on the hash of the key
         //props.put("request.required.acks", "1");
-		props.put("producer.type", "async");
+		props.put("producer.type", "sync");
 		//props.put("producer.type", "1");
-		// 1: async 2: sync
+		// 1: sync 2: async
  
         ProducerConfig config = new ProducerConfig(props);
  

@@ -1,4 +1,4 @@
-package com.ai.kafka.producer.async;
+package com.ai.kafka.producer.sync;
 import java.util.*;
 
 import kafka.javaapi.producer.Producer;
@@ -11,7 +11,7 @@ public class SyncProduce {
         Random rnd = new Random();
  
         Properties props = new Properties();
-        props.put("metadata.broker.list", "192.168.31.128:9092,192.168.31.130:9092");
+        props.put("metadata.broker.list", "192.168.31.128:9092,192.168.31.130:9092,192.168.31.131:9092");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
 		//kafka.serializer.DefaultEncoder
         props.put("partitioner.class", "com.ai.kafka.producer.partition.SimplePartitioner");
